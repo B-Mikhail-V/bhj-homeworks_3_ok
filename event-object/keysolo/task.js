@@ -24,6 +24,39 @@ class Game {
       В случае правильного ввода слова вызываем this.success()
       При неправильном вводе символа - this.fail();
      */
+
+  let currLetter = this.currentSymbol
+  console.log(this.currentSymbol.innerHTML);
+
+  this.currentSymbol.addEventListener('keyup', onKey)
+
+function onKey(e) {
+  let pressLetter = e.key;
+  console.log(pressLetter); 
+  if(currLetter.textContent == pressLetter) {
+    console.log(currLetter.textContent == pressLetter);
+    this.success();
+   } else {
+    console.log(currLetter.textContent == pressLetter);
+   this.fail();
+   }
+}
+// console.log(pressLetter);
+  
+  // addEventListener('keyup', function() {
+  //   if(currLetter.textContent == pressLetter) {
+  //     console.log(currLetter.textContent == pressLetter);
+  //     // console.log(currLetter.textContent);
+  //     return this.success;
+  //    } else {
+  //     console.log(currLetter.textContent == pressLetter);
+  //     // console.log(currLetter.textContent);
+  //     return this.fail;
+  //    }
+  // })
+   
+
+
   }
 
   success() {
