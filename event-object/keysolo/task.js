@@ -17,47 +17,24 @@ class Game {
   }
 
   registerEvents() {
-    /*
-      TODO:
-      Написать обработчик события, который откликается
-      на каждый введённый символ.
-      В случае правильного ввода слова вызываем this.success()
-      При неправильном вводе символа - this.fail();
-     */
-
-  let currLetter = this.currentSymbol
-  console.log(this.currentSymbol.innerHTML);
-
-  this.currentSymbol.addEventListener('keyup', onKey)
-
-function onKey(e) {
-  let pressLetter = e.key;
-  console.log(pressLetter); 
-  if(currLetter.textContent == pressLetter) {
-    console.log(currLetter.textContent == pressLetter);
-    this.success();
-   } else {
-    console.log(currLetter.textContent == pressLetter);
-   this.fail();
-   }
-}
-// console.log(pressLetter);
   
-  // addEventListener('keyup', function() {
-  //   if(currLetter.textContent == pressLetter) {
-  //     console.log(currLetter.textContent == pressLetter);
-  //     // console.log(currLetter.textContent);
-  //     return this.success;
-  //    } else {
-  //     console.log(currLetter.textContent == pressLetter);
-  //     // console.log(currLetter.textContent);
-  //     return this.fail;
-  //    }
-  // })
-   
+  document.addEventListener('keyup', (e) => {
+    let k1 = e.key.toLowerCase();
+    // опеделяем, на какие клавиши не реагировать
+    const keyNotEvent = ['capslock', 'shift', 'control', 'alt', 'enter']
 
+    if(!keyNotEvent.includes(k1)) {
+      if(this.currentSymbol.innerHTML == k1) { 
+        this.success();  
+      } else {
+      this.fail();
+      }
+    }
 
-  }
+  })
+
+    }
+
 
   success() {
     this.currentSymbol.classList.add('symbol_correct');
@@ -74,11 +51,17 @@ function onKey(e) {
   }
 
   fail() {
-    if (++this.lossElement.textContent === 5) {
-      alert('Вы проиграли!');
+    const answer = confirm('Ошибка! Начать заново? "Да"-начать заново, "Нет"-продолжить.')
+    if(!answer) {
+      if (++this.lossElement.textContent === 5) {
+        alert('Вы проиграли!');
+        this.reset();
+      }
+      this.setNewWord();
+    } else {
       this.reset();
     }
-    this.setNewWord();
+
   }
 
   setNewWord() {
@@ -120,4 +103,3 @@ function onKey(e) {
 }
 
 new Game(document.getElementById('game'))
-
