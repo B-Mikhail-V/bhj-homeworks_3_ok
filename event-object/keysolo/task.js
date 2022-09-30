@@ -51,16 +51,17 @@ class Game {
   }
 
   fail() {
-    const answer = confirm('Ошибка! Начать заново? "Да"-начать заново, "Нет"-продолжить.')
-    if(!answer) {
+    // const answer = confirm('Ошибка! Начать заново? "Да"-начать заново, "Нет"-продолжить.')
+    // if(!answer) {
       if (++this.lossElement.textContent === 5) {
         alert('Вы проиграли!');
         this.reset();
       }
       this.setNewWord();
-    } else {
-      this.reset();
-    }
+    // } 
+    // else {
+    //   this.reset();
+    // }
 
   }
 
