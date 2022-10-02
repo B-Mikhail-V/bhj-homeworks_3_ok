@@ -31,7 +31,7 @@ function contentActivate(index) {
 }
 
 
-// деактивация контента, относящегося к группе вкладов
+// деактивация контента, относящегося к группе вкладок
 function contentDeactivate(tabParent) {
     content.forEach(element => {
         if(element.closest('.tabs').id == tabParent) {
