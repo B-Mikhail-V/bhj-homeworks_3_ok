@@ -18,9 +18,14 @@ function tabActivate(index) {
 }
 
 
-// деактивация вкладки по индексу
-function tabDeactivate(index) {
-    tabs[index].classList.remove('tab_active')
+// деактивация вкладки, относящегося к группе вкладок
+function tabDeactivate(tabParent) {
+    tabs.forEach(element => {
+        if(element.closest('.tabs').id == tabParent) {
+            element.classList.remove('tab_active');
+        }
+        
+    })
     
 }
 
@@ -50,10 +55,14 @@ function tabNumber(element) {
 }
 
 
+
+
 // обработка событий
 tabs.forEach(element => {
-    element.addEventListener('click', () => {
-        tabDeactivate(indexActiveTab());
+    element.addEventListener('click', function(event) {
+        console.log(event.target);
+        console.log(tabNumber(element));
+        tabDeactivate(tabNumber(element));
         contentDeactivate(tabNumber(element));
         const indexClicked = tabs.indexOf(element);        
         tabActivate(indexClicked);
